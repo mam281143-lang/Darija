@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2b4c9b">
+<title>Darija Master — Apprends le darija marocain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand:#faf5ec; --card:#ffffff; --ink:#20303c; --muted:#6b7c8a;
+  --blue:#2b4c9b; --blue-l:#e8edfa; --terra:#c2603c; --terra-l:#fbeee8;
+  --gold:#d9a441; --green:#2f9e63; --green-l:#e6f6ee; --red:#d64545; --red-l:#fdeaea;
+  --line:#e8e0d2; --radius:16px; --shadow:0 6px 22px rgba(32,48,60,.08);
+}
+body.dark{
+  --sand:#161622; --card:#22222f; --ink:#e8e6e3; --muted:#9a9aac;
+  --blue:#6b8ae6; --blue-l:#2a3148; --terra:#e08a5c; --terra-l:#3a2a20;
+  --gold:#e8b957; --green:#4fb87d; --green-l:#1f3a29; --red:#e66666; --red-l:#3a1f1f;
+  --line:#33333f; --shadow:0 6px 22px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  font-family:'Cairo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  background:var(--sand); color:var(--ink); line-height:1.5;
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(194,96,60,.07), transparent 42%),
+    radial-gradient(circle at 88% 92%, rgba(43,76,155,.07), transparent 42%);
+  background-attachment:fixed;
+  transition:background .3s,color .3s;
+}
+.wrap{max-width:920px;margin:0 auto;padding:0 14px 90px}
+.topbar{position:sticky;top:0;z-index:40;background:rgba(250,245,236,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+body.dark .topbar{background:rgba(22,22,34,.93)}
+.topbar-in{max-width:920px;margin:0 auto;padding:10px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brand{font-weight:800;font-size:17px;letter-spacing:-.2px;display:flex;align-items:center;gap:7px}
+.brand .dot{width:10px;height:10px;border-radius:3px;background:var(--terra);display:inline-block;transform:rotate(45deg)}
+.stats{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:13px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.chip b{color:var(--terra)}
+.icon-btn{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:5px 10px;cursor:pointer;font-size:16px;line-height:1;color:var(--ink)}
+.tabs{max-width:920px;margin:0 auto;padding:8px 14px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--muted);padding:8px 15px;border-radius:999px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:.18s;white-space:nowrap}
+.tabs button.active{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 4px 14px rgba(43,76,155,.28)}
+h1{font-size:24px;margin:22px 0 6px;letter-spacing:-.4px}
+h2{font-size:19px;margin:26px 0 10px;letter-spacing:-.3px}
+h3{font-size:15px;margin:0 0 4px}
+.sub{color:var(--muted);font-size:14px;margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:12px;padding:12px 18px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;transition:.16s;background:var(--blue);color:#fff}
+.btn:active{transform:scale(.97)}
+.btn.alt{background:var(--card);color:var(--ink);border:1.5px solid var(--line)}
+.btn.terra{background:var(--terra)}
+.btn.green{background:var(--green)}
+.btn.red{background:var(--red)}
+.btn.gold{background:var(--gold);color:#3a2a05}
+.btn.block{width:100%}
+.btn.sm{padding:8px 12px;font-size:13px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.grid{display:grid;gap:12px}
+.grid.two{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.grid.three{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+.hero{background:linear-gradient(135deg,#2b4c9b,#1d3570);color:#fff;border-radius:20px;padding:22px;margin-top:18px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(43,76,155,.28)}
+.hero::after{content:'';position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(217,164,65,.5),transparent 68%)}
+.hero h1{margin:0 0 4px;font-size:23px;color:#fff}
+.hero p{margin:0 0 16px;opacity:.85;font-size:14px;max-width:460px}
+.hero .row{position:relative;z-index:2}
+.hero .btn{background:#fff;color:var(--blue)}
+.hero .btn.ghost{background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.35)}
+.lesson-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;cursor:pointer;transition:.16s;box-shadow:var(--shadow)}
+.lesson-card:hover{border-color:var(--blue);transform:translateY(-2px)}
+.lesson-card .ico{font-size:24px;width:46px;height:46px;display:grid;place-items:center;background:var(--blue-l);border-radius:13px;flex:0 0 auto}
+.lesson-card .txt{flex:1;min-width:0}
+.lesson-card .txt h3{margin:0;font-size:15px}
+.lesson-card .txt p{margin:2px 0 0;font-size:12.5px;color:var(--muted)}
+.bar{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin-top:8px}
+.bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--green),#57c98d);border-radius:99px;transition:width .4s}
+.pct{font-size:12px;color:var(--muted);font-weight:700;margin-top:4px}
+.vocab{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.vc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;position:relative;transition:.16s;box-shadow:0 3px 12px rgba(32,48,60,.05);display:flex;flex-direction:column}
+.vc:hover{border-color:var(--gold)}
+.vc .ar{font-family:'Noto Naskh Arabic','Traditional Arabic',serif;font-size:26px;line-height:1.5;direction:rtl;text-align:right;margin-bottom:2px}
+.vc .lat{font-size:13px;color:var(--terra);font-weight:700;margin-bottom:6px}
+.vc .fr{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.vc-actions{display:flex;gap:6px;margin-top:auto;padding-top:8px;border-top:1px dashed var(--line)}
+.vc-actions button{flex:1;background:var(--blue-l);border:none;border-radius:8px;padding:7px;cursor:pointer;font-size:13px;font-weight:700;color:var(--blue);transition:.14s;display:flex;align-items:center;justify-content:center;gap:4px}
+.vc-actions button:hover{background:var(--blue);color:#fff}
+.vc-actions button.rec{background:var(--terra-l);color:var(--terra)}
+.vc-actions button.rec:hover{background:var(--terra);color:#fff}
+.vc-actions button.has-rec{background:var(--green-l);color:var(--green)}
+.qbox{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow);margin-top:16px}
+.qtext{font-size:15px;color:var(--muted);font-weight:700;margin-bottom:10px}
+.qprompt{font-family:'Noto Naskh Arabic',serif;font-size:34px;direction:rtl;text-align:center;padding:14px 0;line-height:1.6}
+.qprompt.fr{font-family:'Cairo',sans-serif;font-size:24px;direction:ltr;font-weight:700}
+.opt{display:block;width:100%;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:13px;padding:14px 16px;margin-bottom:10px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;transition:.14s;color:var(--ink)}
+.opt:hover:not(:disabled){border-color:var(--blue);background:var(--blue-l)}
+.opt.ar{font-family:'Noto Naskh Arabic',serif;font-size:22px;direction:rtl;text-align:right}
+.opt.correct{border-color:var(--green);background:var(--green-l);color:var(--green)}
+.opt.wrong{border-color:var(--red);background:var(--red-l);color:var(--red)}
+.opt:disabled{cursor:default}
+.qprog{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:18px}
+.qprog > i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),#5b7fe0);transition:width .3s}
+.modal{position:fixed;inset:0;background:rgba(20,30,40,.55);z-index:100;display:grid;place-items:center;padding:16px;backdrop-filter:blur(3px)}
+.modal.hidden{display:none}
+.modal-in{background:var(--sand);border-radius:22px;padding:22px;max-width:540px;width:100%;max-height:90vh;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.flash{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 20px;text-align:center;min-height:190px;display:flex;flex-direction:column;justify-content:center;gap:8px}
+.flash .ar{font-family:'Noto Naskh Arabic',serif;font-size:42px;direction:rtl;line-height:1.6}
+.flash .lat{color:var(--terra);font-weight:700;font-size:15px}
+.flash .fr{font-size:20px;font-weight:700;color:var(--blue)}
+.flash .hidden-fr{font-size:15px;color:var(--muted);font-weight:600}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+th{background:var(--blue-l);color:var(--blue);font-weight:700;font-size:13px}
+tr:last-child td{border-bottom:none}
+.arab{font-family:'Noto Naskh Arabic',serif;font-size:20px;direction:rtl;text-align:right}
+.note{background:var(--terra-l);border-left:4px solid var(--terra);border-radius:10px;padding:11px 14px;font-size:14px;margin:12px 0}
+.note b{color:var(--terra)}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0;margin-bottom:10px;overflow:hidden;box-shadow:0 3px 12px rgba(32,48,60,.05)}
+details summary{padding:15px 17px;cursor:pointer;font-weight:700;font-size:15px;list-style:none;display:flex;align-items:center;gap:10px}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:'▾';margin-left:auto;color:var(--muted);transition:.2s}
+details[open] summary::after{transform:rotate(180deg)}
+details .body{padding:0 17px 17px;border-top:1px solid var(--line)}
+.stat-big{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:center;box-shadow:var(--shadow)}
+.stat-big .n{font-size:26px;font-weight:800;color:var(--blue)}
+.stat-big .l{font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+.empty{text-align:center;padding:40px 20px;color:var(--muted)}
+.empty .big{font-size:44px;margin-bottom:8px}
+.search{width:100%;padding:13px 16px;border-radius:13px;border:1.5px solid var(--line);font-family:inherit;font-size:15px;background:var(--card);color:var(--ink);outline:none;margin-bottom:16px}
+.search:focus{border-color:var(--blue)}
+.back{margin-top:20px;display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:var(--muted);font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;padding:8px 0}
+.back:hover{color:var(--blue)}
+.footer-note{text-align:center;color:var(--muted);font-size:12px;margin-top:34px;line-height:1.7}
+.badge{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:8px}
+.badge.locked{opacity:.4}
+.badge .ico{font-size:22px;width:38px;height:38px;display:grid;place-items:center;background:var(--blue-l);border-radius:10px;flex:0 0 auto}
+.badge .info{flex:1}
+.badge .info b{font-size:14px}
+.badge .info small{display:block;color:var(--muted);font-size:12px}
+.pron-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;text-align:center;box-shadow:var(--shadow)}
+.pron-card .ar{font-family:'Noto Naskh Arabic',serif;font-size:48px;direction:rtl;line-height:1.6;margin-bottom:6px}
+.pron-card .lat{color:var(--terra);font-weight:700;font-size:16px;margin-bottom:6px}
+.pron-card .fr{font-size:20px;font-weight:700;color:var(--blue);margin-bottom:20px}
+.mic-btn{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--terra),#a04c2f);color:#fff;border:none;font-size:34px;cursor:pointer;margin:10px auto;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(194,96,60,.4);transition:.2s}
+.mic-btn:hover{transform:scale(1.05)}
+.mic-btn.listening{animation:pulse 1.2s infinite;background:linear-gradient(135deg,var(--red),#a02020)}
+@keyframes pulse{0%,100%{transform:scale(1);box-shadow:0 8px 24px rgba(214,69,69,.4)}50%{transform:scale(1.08);box-shadow:0 12px 32px rgba(214,69,69,.6)}}
+.score-big{font-size:56px;font-weight:800;margin:10px 0 4px}
+.score-big.pass{color:var(--green)}
+.score-big.fail{color:var(--red)}
+.score-big.mid{color:var(--gold)}
+.heard{background:var(--blue-l);border-radius:12px;padding:12px;margin:12px 0;font-size:14px}
+.heard b{color:var(--blue)}
+.heard .ar{font-family:'Noto Naskh Arabic',serif;font-size:20px;direction:rtl;margin-top:4px}
+.feedback{padding:14px;border-radius:12px;margin:12px 0;font-weight:700;text-align:center}
+.feedback.pass{background:var(--green-l);color:var(--green)}
+.feedback.fail{background:var(--red-l);color:var(--red)}
+.feedback.mid{background:var(--terra-l);color:var(--terra)}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--sand);padding:12px 20px;border-radius:12px;font-weight:700;z-index:200;box-shadow:0 10px 30px rgba(0,0,0,.3);animation:toastIn .3s ease}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+.rec-indicator{display:inline-block;width:10px;height:10px;background:var(--red);border-radius:50%;animation:pulse 1s infinite;margin-right:6px;vertical-align:middle}
+.voice-info{font-size:12px;color:var(--muted);margin-top:6px;font-style:italic}
+.slider{width:100%;accent-color:var(--blue);margin:8px 0}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <div class="brand"><span class="dot"></span> Darija Master</div>
+    <div class="stats">
+      <span class="chip">🔥 <b id="stat-streak">0</b></span>
+      <span class="chip">⭐ <b id="stat-xp">0</b></span>
+      <span class="chip">🎯 Niv. <b id="stat-lvl">1</b></span>
+      <button class="icon-btn" id="themeBtn" title="Thème" onclick="toggleTheme()">🌙</button>
+    </div>
+  </div>
+</div>
+
+<div class="tabs" id="tabs">
+  <button data-go="home" class="active">🏠 Accueil</button>
+  <button data-go="lessons">📚 Leçons</button>
+  <button data-go="pron">🎤 Prononciation</button>
+  <button data-go="review">🧠 Réviser</button>
+  <button data-go="grammar">📖 Grammaire</button>
+  <button data-go="profile">👤 Profil</button>
+</div>
+
+<div class="wrap"><div id="main"></div></div>
+<div class="modal hidden" id="modal"></div>
+
+<script>
+/* =========================================================
+   1. DONNÉES DES LEÇONS
+   ========================================================= */
+const LESSONS = [
+{id:'salutations', icon:'👋', title:'Salutations & politesse', desc:'Bonjour, merci, au revoir…', items:[
+ {ar:'سلام', lat:'salam', fr:'Salut / Bonjour'},
+ {ar:'السلام عليكم', lat:'salam 3likum', fr:'Bonjour (paix sur vous)'},
+ {ar:'وعليكم السلام', lat:'wa 3likum salam', fr:'Et sur vous la paix'},
+ {ar:'صباح الخير', lat:'sbah lkhir', fr:'Bonjour (le matin)'},
+ {ar:'مسا الخير', lat:'msa lkhir', fr:'Bonsoir'},
+ {ar:'كيفاش نتا؟', lat:'kifach nta ?', fr:'Comment vas-tu ? (à un homme)'},
+ {ar:'كيفاش نتي؟', lat:'kifach nti ?', fr:'Comment vas-tu ? (à une femme)'},
+ {ar:'لاباس؟', lat:'labas ?', fr:'Ça va ?'},
+ {ar:'لاباس الحمد لله', lat:'labas lhamdullah', fr:'Ça va, Dieu merci'},
+ {ar:'بسلامة', lat:'bslama', fr:'Au revoir'},
+ {ar:'شكرا', lat:'shukran', fr:'Merci'},
+ {ar:'بارك الله فيك', lat:'barak Allah fik', fr:'Merci (que Dieu te bénisse)'},
+ {ar:'عفاك', lat:'3afak', fr:"S'il te plaît"},
+ {ar:'سمح ليا', lat:'sma7 liya', fr:'Pardonne-moi / Excuse-moi'},
+ {ar:'واخا', lat:'wakha', fr:"D'accord"},
+ {ar:'ما كاين مشكل', lat:'ma kayn mushkil', fr:'Pas de problème'},
+ {ar:'مرحبا', lat:'marhaba', fr:'Bienvenue'},
+ {ar:'تصبح على خير', lat:'tsbah 3la khir', fr:'Bonne nuit'},
+ {ar:'الله يخليك', lat:'Allah ykhallik', fr:'Merci beaucoup (que Dieu te garde)'},
+ {ar:'بالصحة', lat:'bessaha', fr:'Bon appétit / Santé !'}
+]},
+
+{id:'base', icon:'🧩', title:'Mots de base', desc:'Oui, non, où, quand, combien…', items:[
+ {ar:'إيه', lat:'iyeh', fr:'Oui'},
+ {ar:'لا', lat:'la', fr:'Non'},
+ {ar:'شوية', lat:'shwiya', fr:'Un peu'},
+ {ar:'بزاف', lat:'bezzaf', fr:'Beaucoup / très'},
+ {ar:'دابا', lat:'daba', fr:'Maintenant'},
+ {ar:'من بعد', lat:'men ba3d', fr:'Plus tard'},
+ {ar:'هنا', lat:'hna', fr:'Ici'},
+ {ar:'تما', lat:'temma', fr:'Là-bas'},
+ {ar:'هادا', lat:'hada', fr:'Ceci / celui-ci'},
+ {ar:'هادي', lat:'hadi', fr:'Celle-ci'},
+ {ar:'آش / شنو', lat:'ash / shnu', fr:'Quoi'},
+ {ar:'علاش', lat:'3lash', fr:'Pourquoi'},
+ {ar:'كيفاش', lat:'kifach', fr:'Comment'},
+ {ar:'فين', lat:'fin', fr:'Où'},
+ {ar:'شكون', lat:'shkun', fr:'Qui'},
+ {ar:'فوقاش', lat:'fuqash', fr:'Quand'},
+ {ar:'شحال', lat:'shhal', fr:'Combien'},
+ {ar:'ما عرفتش', lat:'ma 3reftsh', fr:'Je ne sais pas'},
+ {ar:'ما فهمتش', lat:'ma fhemtsh', fr:"Je n'ai pas compris"},
+ {ar:'عاود عافاك', lat:'3awed 3afak', fr:"Répète s'il te plaît"},
+ {ar:'بشوية', lat:'bshwiya', fr:'Doucement'},
+ {ar:'واش', lat:'wash', fr:'Est-ce que… (question)'}
+]},
+
+{id:'nombres', icon:'🔢', title:'Nombres', desc:'Compter de 0 à 1000', items:[
+ {ar:'صفر', lat:'sifr', fr:'Zéro (0)'},
+ {ar:'واحد', lat:'wa7ed', fr:'Un (1)'},
+ {ar:'جوج', lat:'jouj', fr:'Deux (2)'},
+ {ar:'تلاتة', lat:'tlata', fr:'Trois (3)'},
+ {ar:'ربعة', lat:'rb3a', fr:'Quatre (4)'},
+ {ar:'خمسة', lat:'khamsa', fr:'Cinq (5)'},
+ {ar:'ستة', lat:'setta', fr:'Six (6)'},
+ {ar:'سبعة', lat:'sb3a', fr:'Sept (7)'},
+ {ar:'تمنية', lat:'tmniya', fr:'Huit (8)'},
+ {ar:'تسعود', lat:'ts3ud', fr:'Neuf (9)'},
+ {ar:'عشرة', lat:'3shra', fr:'Dix (10)'},
+ {ar:'حداش', lat:'7dash', fr:'Onze (11)'},
+ {ar:'تناش', lat:'tnash', fr:'Douze (12)'},
+ {ar:'عشرين', lat:'3shrin', fr:'Vingt (20)'},
+ {ar:'ثلاثين', lat:'tlatin', fr:'Trente (30)'},
+ {ar:'مية', lat:'mya', fr:'Cent (100)'},
+ {ar:'ألف', lat:'alf', fr:'Mille (1000)'},
+ {ar:'نص', lat:'ness', fr:'Moitié / demi'},
+ {ar:'ربع', lat:'rbe3', fr:'Quart'},
+ {ar:'الأول', lat:'lewwel', fr:'Le premier'},
+ {ar:'الثاني', lat:'tani', fr:'Le deuxième'}
+]},
+
+{id:'famille', icon:'👨‍👩‍👧', title:'Famille & gens', desc:'Parents, frères, amis…', items:[
+ {ar:'بابا', lat:'baba', fr:'Papa / père'},
+ {ar:'ماما', lat:'mama', fr:'Maman / mère'},
+ {ar:'خو', lat:'khu', fr:'Frère'},
+ {ar:'خت', lat:'kht', fr:'Sœur'},
+ {ar:'ولد', lat:'wld', fr:'Fils / garçon'},
+ {ar:'بنت', lat:'bent', fr:'Fille'},
+ {ar:'جد', lat:'jadd', fr:'Grand-père'},
+ {ar:'جدة', lat:'jadda', fr:'Grand-mère'},
+ {ar:'عمي', lat:'3ammi', fr:'Mon oncle (paternel)'},
+ {ar:'خالي', lat:'khali', fr:'Mon oncle (maternel)'},
+ {ar:'عمتي', lat:'3amti', fr:'Ma tante (paternelle)'},
+ {ar:'خالتي', lat:'khalati', fr:'Ma tante (maternelle)'},
+ {ar:'ولد عمي', lat:'wld 3ammi', fr:'Mon cousin'},
+ {ar:'مراتي', lat:'mrati', fr:'Ma femme'},
+ {ar:'راجلي', lat:'rajli', fr:'Mon mari'},
+ {ar:'دراري', lat:'drari', fr:'Les enfants'},
+ {ar:'صحابي', lat:'shabi', fr:'Mes amis'},
+ {ar:'جيران', lat:'jiran', fr:'Les voisins'},
+ {ar:'عائلة', lat:'3aila', fr:'La famille'},
+ {ar:'صاحبي', lat:'sahbi', fr:'Mon ami'}
+]},
+
+{id:'nourriture', icon:'🍲', title:'Nourriture & restaurant', desc:'Manger, boire, commander', items:[
+ {ar:'ما', lat:'ma', fr:"L'eau"},
+ {ar:'أتاي', lat:'atay', fr:'Le thé'},
+ {ar:'قهوة', lat:'qahwa', fr:'Le café'},
+ {ar:'خبز', lat:'khubz', fr:'Le pain'},
+ {ar:'لحم', lat:'lham', fr:'La viande'},
+ {ar:'حوت', lat:'hut', fr:'Le poisson'},
+ {ar:'دجاج', lat:'djaj', fr:'Le poulet'},
+ {ar:'خضرة', lat:'khudra', fr:'Les légumes'},
+ {ar:'فواكه', lat:'fwakih', fr:'Les fruits'},
+ {ar:'زيت', lat:'zayt', fr:"L'huile"},
+ {ar:'ملح', lat:'melh', fr:'Le sel'},
+ {ar:'سكر', lat:'sukkar', fr:'Le sucre'},
+ {ar:'حريرة', lat:'harira', fr:'Harira (soupe marocaine)'},
+ {ar:'طاجين', lat:'tajin', fr:'Le tajine'},
+ {ar:'كسكس', lat:'kuskus', fr:'Le couscous'},
+ {ar:'بنين', lat:'bnin', fr:'Délicieux'},
+ {ar:'جيعان', lat:'ji3an', fr:'Affamé'},
+ {ar:'عطشان', lat:'3atshan', fr:'Assoiffé'},
+ {ar:'شبعت', lat:'shbe3t', fr:'Je suis rassasié'},
+ {ar:'الحساب', lat:'l7sab', fr:"L'addition"},
+ {ar:'عطيني الحساب', lat:'3tini l7sab', fr:"Apportez-moi l'addition"},
+ {ar:'بالصحة', lat:'bessaha', fr:'Bon appétit'}
+]},
+
+{id:'marche', icon:'🛒', title:'Au marché / achats', desc:'Prix, négocier, acheter', items:[
+ {ar:'سوق', lat:'suq', fr:'Le marché'},
+ {ar:'حانوت', lat:'hanut', fr:"L'épicerie"},
+ {ar:'شحال؟', lat:'shhal ?', fr:'Combien ?'},
+ {ar:'بشحال هادا؟', lat:'bshhal hada ?', fr:'Combien ça coûte ?'},
+ {ar:'غالي', lat:'ghali', fr:'Cher'},
+ {ar:'رخيص', lat:'rkhis', fr:'Bon marché'},
+ {ar:'فلوس', lat:'flus', fr:"L'argent"},
+ {ar:'درهم', lat:'derham', fr:'Dirham (monnaie)'},
+ {ar:'عطيني', lat:'3tini', fr:'Donne-moi'},
+ {ar:'بغيت', lat:'bghit', fr:'Je veux'},
+ {ar:'ما بغيتش', lat:'ma bghitsh', fr:'Je ne veux pas'},
+ {ar:'شري', lat:'shri', fr:'Achète'},
+ {ar:'بيع', lat:'bi3', fr:'Vends'},
+ {ar:'تخفيض', lat:'tkhfid', fr:'Une réduction'},
+ {ar:'كيس', lat:'kays', fr:'Un sac'},
+ {ar:'نص كيلو', lat:'ness kilo', fr:'Un demi-kilo'},
+ {ar:'آخر', lat:'akher', fr:'Autre'},
+ {ar:'شوية بشوية', lat:'shwiya bshwiya', fr:'Petit à petit'},
+ {ar:'واش عندك…؟', lat:'wash 3andek… ?', fr:'Est-ce que tu as… ?'}
+]},
+
+{id:'transport', icon:'🚕', title:'Transport & directions', desc:'Se déplacer, demander son chemin', items:[
+ {ar:'فين…؟', lat:'fin… ?', fr:'Où est… ?'},
+ {ar:'على اليمين', lat:'3la limen', fr:'À droite'},
+ {ar:'على اليسار', lat:'3la liser', fr:'À gauche'},
+ {ar:'نيشان', lat:'nishan', fr:'Tout droit'},
+ {ar:'قريب', lat:'qrib', fr:'Proche'},
+ {ar:'بعيد', lat:'b3id', fr:'Loin'},
+ {ar:'طوموبيل', lat:'tumobil', fr:'Une voiture'},
+ {ar:'طاكسي', lat:'taksi', fr:'Un taxi'},
+ {ar:'كار', lat:'kar', fr:'Un bus'},
+ {ar:'قطار', lat:'qtar', fr:'Un train'},
+ {ar:'مطار', lat:'matar', fr:"L'aéroport"},
+ {ar:'محطة', lat:'mahatta', fr:'La gare / la station'},
+ {ar:'طريق', lat:'triq', fr:'La route'},
+ {ar:'زنقة', lat:'zenqa', fr:'La rue'},
+ {ar:'المدينة', lat:'lmdina', fr:'La ville'},
+ {ar:'شحال بعيد؟', lat:'shhal b3id ?', fr:"C'est loin ?"},
+ {ar:'وقف هنا', lat:'wqef hna', fr:'Arrête-toi ici'},
+ {ar:'بغيت نمشي لـ…', lat:'bghit nemchi l…', fr:'Je veux aller à…'},
+ {ar:'الله يسهل', lat:'Allah ysehel', fr:'Bon voyage (que Dieu facilite)'}
+]},
+
+{id:'temps', icon:'⏰', title:'Temps & dates', desc:'Aujourd’hui, demain, l’heure…', items:[
+ {ar:'اليوم', lat:'lyoum', fr:"Aujourd'hui"},
+ {ar:'غدا', lat:'ghedda', fr:'Demain'},
+ {ar:'لبارح', lat:'lbarh', fr:'Hier'},
+ {ar:'دابا', lat:'daba', fr:'Maintenant'},
+ {ar:'صباح', lat:'sbah', fr:'Le matin'},
+ {ar:'ليل', lat:'lil', fr:'La nuit'},
+ {ar:'نهار', lat:'nhar', fr:'Le jour'},
+ {ar:'سيمانة', lat:'simana', fr:'La semaine'},
+ {ar:'شهر', lat:'shher', fr:'Le mois'},
+ {ar:'عام', lat:'3am', fr:"L'année"},
+ {ar:'ساعة', lat:'sa3a', fr:"L'heure"},
+ {ar:'دقيقة', lat:'dqiqa', fr:'La minute'},
+ {ar:'شحال فالساعة؟', lat:'shhal f sa3a ?', fr:'Quelle heure est-il ?'},
+ {ar:'الأسبوع الجاي', lat:'lesbou3 jay', fr:'La semaine prochaine'},
+ {ar:'كل نهار', lat:'koul nhar', fr:'Chaque jour'},
+ {ar:'مرة', lat:'merra', fr:'Une fois'},
+ {ar:'دغيا', lat:'dghya', fr:'Vite / bientôt'},
+ {ar:'بعد شوية', lat:'be3d shwiya', fr:'Dans un moment'},
+ {ar:'نص النهار', lat:'ness nhar', fr:'Midi'},
+ {ar:'العشية', lat:'l3shiya', fr:"L'après-midi"}
+]},
+
+{id:'verbes', icon:'⚡', title:'Verbes essentiels', desc:'Les 20 verbes à connaître absolument', items:[
+ {ar:'مشى', lat:'msha', fr:'Aller (il est allé)'},
+ {ar:'جا', lat:'ja', fr:'Venir (il est venu)'},
+ {ar:'كلا', lat:'kla', fr:'Manger (il a mangé)'},
+ {ar:'شرب', lat:'shreb', fr:'Boire (il a bu)'},
+ {ar:'نعس', lat:'ne3s', fr:'Dormir'},
+ {ar:'قرا', lat:'qra', fr:'Lire / étudier'},
+ {ar:'كتب', lat:'kteb', fr:'Écrire'},
+ {ar:'هدر', lat:'hder', fr:'Parler'},
+ {ar:'سمع', lat:'sme3', fr:'Entendre / écouter'},
+ {ar:'شاف', lat:'shaf', fr:'Voir'},
+ {ar:'عرف', lat:'3ref', fr:'Savoir / connaître'},
+ {ar:'بغى', lat:'bgha', fr:'Vouloir'},
+ {ar:'قدر', lat:'qder', fr:'Pouvoir'},
+ {ar:'خدم', lat:'khdem', fr:'Travailler'},
+ {ar:'لعب', lat:'l3eb', fr:'Jouer'},
+ {ar:'شرى', lat:'shra', fr:'Acheter'},
+ {ar:'باع', lat:'ba3', fr:'Vendre'},
+ {ar:'دار', lat:'dar', fr:'Faire'},
+ {ar:'عطى', lat:'3ta', fr:'Donner'},
+ {ar:'خذى', lat:'khda', fr:'Prendre'}
+]},
+
+{id:'maison', icon:'🏠', title:'Maison & quotidien', desc:'Les objets du quotidien', items:[
+ {ar:'دار', lat:'dar', fr:'La maison'},
+ {ar:'كوزينة', lat:'kuzina', fr:'La cuisine'},
+ {ar:'حمام', lat:'hmmam', fr:'La salle de bain'},
+ {ar:'صالون', lat:'salon', fr:'Le salon'},
+ {ar:'بيت النعاس', lat:'bit ne3as', fr:'La chambre'},
+ {ar:'باب', lat:'bab', fr:'La porte'},
+ {ar:'شرجم', lat:'sherjem', fr:'La fenêtre'},
+ {ar:'كرسي', lat:'kursi', fr:'La chaise'},
+ {ar:'طابلة', lat:'tabla', fr:'La table'},
+ {ar:'فراش', lat:'fresh', fr:'Le lit'},
+ {ar:'تلاجة', lat:'ttaja', fr:'Le frigo'},
+ {ar:'تلفازة', lat:'tlfaza', fr:'La télévision'},
+ {ar:'ضو', lat:'daw', fr:'La lumière'},
+ {ar:'مفتاح', lat:'meftah', fr:'La clé'},
+ {ar:'كتاب', lat:'ktab', fr:'Le livre'},
+ {ar:'تليفون', lat:'tilifun', fr:'Le téléphone'},
+ {ar:'صابون', lat:'sabun', fr:'Le savon'},
+ {ar:'ماء ساخن', lat:'ma skhoun', fr:"L'eau chaude"}
+]},
+
+{id:'adjectifs', icon:'🎨', title:'Adjectifs & sentiments', desc:'Décrire, exprimer ses émotions', items:[
+ {ar:'فرحان', lat:'ferhan', fr:'Content'},
+ {ar:'حزين', lat:'hzin', fr:'Triste'},
+ {ar:'مقلق', lat:'mqelleq', fr:'Inquiet'},
+ {ar:'عيان', lat:'3yan', fr:'Fatigué'},
+ {ar:'مريض', lat:'mrid', fr:'Malade'},
+ {ar:'مزيان', lat:'mzyan', fr:'Bien / bon'},
+ {ar:'خايب', lat:'khayeb', fr:'Mauvais'},
+ {ar:'زوين', lat:'zwin', fr:'Beau / joli'},
+ {ar:'كبير', lat:'kbir', fr:'Grand'},
+ {ar:'صغير', lat:'sghir', fr:'Petit'},
+ {ar:'سخون', lat:'skhoun', fr:'Chaud'},
+ {ar:'بارد', lat:'bard', fr:'Froid'},
+ {ar:'ساهل', lat:'sahel', fr:'Facile'},
+ {ar:'صعيب', lat:'s3ib', fr:'Difficile'},
+ {ar:'ممكن', lat:'mumkin', fr:'Possible'},
+ {ar:'خطير', lat:'khtir', fr:'Génial / dangereux (selon contexte)'},
+ {ar:'حشومة', lat:'hshuma', fr:'La honte'},
+ {ar:'مبروك', lat:'mbruk', fr:'Félicitations'}
+]},
+
+{id:'phrases', icon:'💬', title:'Phrases de survie', desc:'Les phrases à connaître par cœur', items:[
+ {ar:'شنو سميتك؟', lat:'shnu smitek ?', fr:"Comment tu t'appelles ?"},
+ {ar:'سميتي…', lat:'smiti…', fr:'Je m’appelle…'},
+ {ar:'منين نتا؟', lat:'mnin nta ?', fr:"D'où viens-tu ?"},
+ {ar:'أنا من فرنسا', lat:'ana men Franssa', fr:'Je viens de France'},
+ {ar:'شحال عندك؟', lat:'shhal 3andek ?', fr:'Quel âge as-tu ?'},
+ {ar:'بغيت نتعلم الدارجة', lat:'bghit net3ellem ddarija', fr:'Je veux apprendre le darija'},
+ {ar:'واش كتهضر بالفرنسية؟', lat:'wash kathder bel fransiya ?', fr:'Parles-tu français ?'},
+ {ar:'فين كاين الحمام؟', lat:'fin kayn l7ammam ?', fr:'Où sont les toilettes ?'},
+ {ar:'ما فهمتش، عاود بشوية', lat:'ma fhemtsh, 3awed bshwiya', fr:"Je n'ai pas compris, répète doucement"},
+ {ar:'كنحب المغرب', lat:'kanbghi lmaghrib', fr:"J'aime le Maroc"},
+ {ar:'سمح ليا على التأخير', lat:'sma7 liya 3la takhir', fr:'Désolé pour le retard'},
+ {ar:'شنو كاين؟', lat:'shnu kayn ?', fr:"Qu'est-ce qu'il y a ?"},
+ {ar:'إن شاء الله', lat:'in sha Allah', fr:'Si Dieu le veut'},
+ {ar:'الله يعاون', lat:'Allah y3awen', fr:'Que Dieu aide'},
+ {ar:'توكلنا على الله', lat:'twekkelna 3la Allah', fr:'On remet tout à Dieu (allons-y)'},
+ {ar:'بزاف مزيان', lat:'bezzaf mzyan', fr:'Très bien'}
+]},
+
+{id:'corps', icon:'🩺', title:'Corps & santé', desc:'Chez le médecin, urgence', items:[
+ {ar:'راس', lat:'ras', fr:'La tête'},
+ {ar:'عين', lat:'3in', fr:"L'œil"},
+ {ar:'يد', lat:'yedd', fr:'La main'},
+ {ar:'رجل', lat:'rejl', fr:'La jambe / le pied'},
+ {ar:'قلب', lat:'qelb', fr:'Le cœur'},
+ {ar:'بطن', lat:'btin', fr:'Le ventre'},
+ {ar:'سنان', lat:'snan', fr:'Les dents'},
+ {ar:'وجع', lat:'wja3', fr:'La douleur'},
+ {ar:'عندي وجع فالراس', lat:'3andi wja3 f ras', fr:"J'ai mal à la tête"},
+ {ar:'طبيب', lat:'tbib', fr:'Le médecin'},
+ {ar:'صيدلية', lat:'sidliya', fr:'La pharmacie'},
+ {ar:'دوا', lat:'dwa', fr:'Le médicament'},
+ {ar:'مستشفى', lat:'mustashfa', fr:"L'hôpital"},
+ {ar:'سخانة', lat:'skhana', fr:'La fièvre'},
+ {ar:'عيان بزاف', lat:'3yan bezzaf', fr:'Très fatigué'},
+ {ar:'عافاك عاوني', lat:'3afak 3awenni', fr:"S'il te plaît aide-moi"},
+ {ar:'عيط للبوليس', lat:'3ayet l lbolis', fr:'Appelle la police'},
+ {ar:'عيط للطبيب', lat:'3ayet l tbib', fr:'Appelle le médecin'}
+]},
+
+{id:'travail', icon:'💼', title:'Travail & école', desc:'Bureau, études, argent', items:[
+ {ar:'خدمة', lat:'khadma', fr:'Le travail'},
+ {ar:'مكتب', lat:'maktab', fr:'Le bureau'},
+ {ar:'مدرسة', lat:'medrasa', fr:"L'école"},
+ {ar:'جامعة', lat:'jam3a', fr:"L'université"},
+ {ar:'أستاذ', lat:'ostad', fr:'Le professeur'},
+ {ar:'تلميذ', lat:'telmiz', fr:"L'élève"},
+ {ar:'فلوس', lat:'flus', fr:"L'argent"},
+ {ar:'راتب', lat:'ratib', fr:'Le salaire'},
+ {ar:'بزنس', lat:'biznes', fr:'Le business'},
+ {ar:'مشروع', lat:'mashru3', fr:'Le projet'},
+ {ar:'اجتماع', lat:'ijtima3', fr:'La réunion'},
+ {ar:'بغيت نخدم', lat:'bghit nekhdem', fr:'Je veux travailler'},
+ {ar:'كنخدم فـ…', lat:'kankhdem f…', fr:'Je travaille à…'},
+ {ar:'شحال كتخلص؟', lat:'shhal katkhalles ?', fr:'Combien tu es payé ?'},
+ {ar:'مزيان بزاف', lat:'mzyan bezzaf', fr:'Très bien'}
+]},
+
+{id:'expression', icon:'🎭', title:'Expressions & argot', desc:'Parle comme un vrai Marocain', items:[
+ {ar:'يزي', lat:'yzi', fr:'Ça suffit / arrête'},
+ {ar:'سير', lat:'sir', fr:'Vas-y / dégage'},
+ {ar:'والله', lat:'wallah', fr:'Je jure (par Dieu)'},
+ {ar:'صح', lat:'sah', fr:'Vrai / c’est vrai'},
+ {ar:'توحشتك', lat:'twa7ashtek', fr:'Tu m’as manqué'},
+ {ar:'كنبغيك', lat:'kanbghik', fr:'Je t’aime'},
+ {ar:'شحال زوين', lat:'shhal zwin', fr:'Comme c’est beau'},
+ {ar:'الله يبارك', lat:'Allah ybarek', fr:'Que Dieu bénisse'},
+ {ar:'ماشي مشكل', lat:'mashi mushkil', fr:'Pas de problème'},
+ {ar:'دير مزيان', lat:'dir mzyan', fr:'Fais bien / sois sage'},
+ {ar:'حشومة عليك', lat:'hshuma 3lik', fr:'Tu devrais avoir honte'},
+ {ar:'على راسي', lat:'3la rasi', fr:'Avec plaisir (sur ma tête)'},
+ {ar:'الله يعطيك الصحة', lat:'Allah y3tik saha', fr:'Merci (que Dieu te donne la santé)'},
+ {ar:'صافي', lat:'safi', fr:'C’est bon / terminé'}
+]}
+];
+
+/* =========================================================
+   2. GRAMMAIRE
+   ========================================================= */
+const GRAMMAR = [
+{icon:'🧑', title:'Les pronoms personnels', body:`
+<table><tr><th>Darija</th><th>Translittération</th><th>Français</th></tr>
+<tr><td class="arab">أنا</td><td>ana</td><td>Je</td></tr>
+<tr><td class="arab">نتا</td><td>nta</td><td>Tu (homme)</td></tr>
+<tr><td class="arab">نتي</td><td>nti</td><td>Tu (femme)</td></tr>
+<tr><td class="arab">هوّا</td><td>huwa</td><td>Il</td></tr>
+<tr><td class="arab">هيّا</td><td>hiya</td><td>Elle</td></tr>
+<tr><td class="arab">حنا</td><td>7na</td><td>Nous</td></tr>
+<tr><td class="arab">نتوما</td><td>ntuma</td><td>Vous</td></tr>
+<tr><td class="arab">هوما</td><td>huma</td><td>Ils / elles</td></tr></table>
+<div class="note"><b>Astuce :</b> le « 7 » note le son <b>ح</b> (h très soufflé). Le « 3 » note le <b>ع</b> (son de gorge).</div>`},
+
+{icon:'⏳', title:'Le présent : la formule kā-', body:`
+<p>En darija, le présent se forme avec le préfixe <b>ka-</b> (ou <b>ta-</b>) + le verbe. Exemple avec <b>كتب</b> (kteb = écrire) :</p>
+<table><tr><th>Personne</th><th>Darija</th><th>Français</th></tr>
+<tr><td>ana</td><td class="arab">كانكتب</td><td>J'écris</td></tr>
+<tr><td>nta / nti</td><td class="arab">كاتكتب</td><td>Tu écris</td></tr>
+<tr><td>huwa</td><td class="arab">كايكتب</td><td>Il écrit</td></tr>
+<tr><td>hiya</td><td class="arab">كاتكتب</td><td>Elle écrit</td></tr>
+<tr><td>7na</td><td class="arab">كانكتبو</td><td>Nous écrivons</td></tr>
+<tr><td>ntuma</td><td class="arab">كاتكتبو</td><td>Vous écrivez</td></tr>
+<tr><td>huma</td><td class="arab">كايكتبو</td><td>Ils écrivent</td></tr></table>
+<div class="note"><b>À retenir :</b> au pluriel, le verbe se termine toujours par <b>-u</b>.</div>`},
+
+{icon:'🚫', title:'La négation : ma…sh', body:`
+<p>Pour nier, on entoure le verbe de <b>ma</b> … <b>sh</b>.</p>
+<table><tr><th>Affirmatif</th><th>Négatif</th><th>Français</th></tr>
+<tr><td class="arab">بغيت</td><td class="arab">ما بغيتش</td><td>Je veux / Je ne veux pas</td></tr>
+<tr><td class="arab">عرفت</td><td class="arab">ما عرفتش</td><td>Je sais / Je ne sais pas</td></tr>
+<tr><td class="arab">فهمت</td><td class="arab">ما فهمتش</td><td>J'ai compris / Je n'ai pas compris</td></tr>
+<tr><td class="arab">كاين</td><td class="arab">ما كاينش</td><td>Il y a / Il n'y a pas</td></tr>
+<tr><td class="arab">عندي</td><td class="arab">ما عنديش</td><td>J'ai / Je n'ai pas</td></tr></table>`},
+
+{icon:'🚀', title:'Le futur : gha / ghadi', body:`
+<p>Le futur est très simple : on place <b>gha</b> (ou <b>ghadi</b>) devant le verbe non conjugué.</p>
+<table><tr><th>Darija</th><th>Français</th></tr>
+<tr><td class="arab">غادي نمشي</td><td>J'irai</td></tr>
+<tr><td class="arab">غادي تمشي</td><td>Tu iras</td></tr>
+<tr><td class="arab">غا يجي</td><td>Il viendra</td></tr>
+<tr><td class="arab">غادي ناكلو</td><td>Nous mangerons</td></tr></table>`},
+
+{icon:'❓', title:'Poser une question', body:`
+<p><b>1. L'intonation montante</b> — la phrase reste identique : <span class="arab">كتمشي؟</span></p>
+<p><b>2. Avec <span class="arab">واش</span> (wash)</b> en début de phrase : <span class="arab">واش كتمشي؟</span></p>
+<table><tr><th>Mot interrogatif</th><th>Translittération</th><th>Français</th></tr>
+<tr><td class="arab">شنو / آش</td><td>shnu / ash</td><td>Quoi</td></tr>
+<tr><td class="arab">شكون</td><td>shkun</td><td>Qui</td></tr>
+<tr><td class="arab">فين</td><td>fin</td><td>Où</td></tr>
+<tr><td class="arab">فوقاش</td><td>fuqash</td><td>Quand</td></tr>
+<tr><td class="arab">علاش</td><td>3lash</td><td>Pourquoi</td></tr>
+<tr><td class="arab">كيفاش</td><td>kifach</td><td>Comment</td></tr>
+<tr><td class="arab">شحال</td><td>shhal</td><td>Combien</td></tr></table>`},
+
+{icon:'🔗', title:'La possession : dyal', body:`
+<table><tr><th>Darija</th><th>Français</th></tr>
+<tr><td class="arab">ديالي</td><td>dyali — le mien</td></tr>
+<tr><td class="arab">ديالك</td><td>dyalk — le tien</td></tr>
+<tr><td class="arab">ديالو</td><td>dyalo — le sien (à lui)</td></tr>
+<tr><td class="arab">ديالها</td><td>dyalha — le sien (à elle)</td></tr>
+<tr><td class="arab">ديالنا</td><td>dyalna — le nôtre</td></tr>
+<tr><td class="arab">ديالكم</td><td>dyalkum — le vôtre</td></tr>
+<tr><td class="arab">ديالهم</td><td>dyalhum — le leur</td></tr></table>`},
+
+{icon:'📖', title:'L’article défini « l- »', body:`
+<table><tr><th>Indéfini</th><th>Défini</th><th>Français</th></tr>
+<tr><td class="arab">دار</td><td class="arab">الدار</td><td>maison / la maison</td></tr>
+<tr><td class="arab">كتاب</td><td class="arab">الكتاب</td><td>livre / le livre</td></tr>
+<tr><td class="arab">سوق</td><td class="arab">السوق</td><td>marché / le marché</td></tr></table>
+<div class="note"><b>Astuce :</b> devant certaines consonnes, le l- se prononce comme la consonne suivante : <b>الشمس</b> se dit « <i>sh-shems</i> ».</div>`},
+
+{icon:'🔊', title:'Les sons à maîtriser', body:`
+<table><tr><th>Symbole</th><th>Son</th><th>Exemple</th></tr>
+<tr><td><b>7</b></td><td>ح — h très soufflé</td><td>7na (nous)</td></tr>
+<tr><td><b>3</b></td><td>ع — son de gorge</td><td>3afak (s'il te plaît)</td></tr>
+<tr><td><b>q</b></td><td>ق — k profond</td><td>qahwa (café)</td></tr>
+<tr><td><b>kh</b></td><td>خ — jota espagnole</td><td>khubz (pain)</td></tr>
+<tr><td><b>gh</b></td><td>غ — r grasseyé doux</td><td>ghali (cher)</td></tr>
+<tr><td><b>sh</b></td><td>ش — ch</td><td>shwiya (un peu)</td></tr>
+<tr><td><b>dj</b></td><td>ج — dj</td><td>djaj (poulet)</td></tr></table>`}
+];
+
+/* =========================================================
+   3. ÉTAT & PERSISTANCE
+   ========================================================= */
+const STORE_KEY = 'darija_master_v3';
+const DAY = 86400000;
+const INTERVALS = [0, 1, 3, 7, 16, 35];
+
+function defaultState(){
+  return {
+    xp:0, streak:0, lastDay:null,
+    known:{}, srs:{}, quizTotal:0, quizCorrect:0,
+    recordings:{}, settings:{ theme:'light', rate:0.9 },
+    pronTotal:0, pronCorrect:0
+  };
+}
+let state = loadState();
+
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    if(!raw) return defaultState();
+    const s = Object.assign(defaultState(), JSON.parse(raw));
+    s.settings = Object.assign(defaultState().settings, s.settings || {});
+    return s;
+  }catch(e){ return defaultState(); }
+}
+function saveState(){
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+  catch(e){ toast('⚠️ Stockage plein — enregistrements supprimés'); }
+}
+function todayStr(){
+  const d = new Date();
+  return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+}
+function checkStreak(){
+  const t = todayStr();
+  if(state.lastDay === t) return;
+  const y = new Date(Date.now()-DAY);
+  const yStr = y.getFullYear()+'-'+(y.getMonth()+1)+'-'+y.getDate();
+  if(state.lastDay === yStr) state.streak++;
+  else state.streak = 1;
+  state.lastDay = t;
+  saveState();
+  updateTopStats();
+}
+function level(){ return 1 + Math.floor(state.xp / 120); }
+function addXP(n){ state.xp += n; saveState(); updateTopStats(); }
+function updateTopStats(){
+  const e1 = document.getElementById('stat-xp');
+  const e2 = document.getElementById('stat-streak');
+  const e3 = document.getElementById('stat-lvl');
+  if(e1) e1.textContent = state.xp;
+  if(e2) e2.textContent = state.streak;
+  if(e3) e3.textContent = level();
+}
+function srsGet(key){ if(!state.srs[key]) state.srs[key] = { box:0, due:0 }; return state.srs[key]; }
+function srsRight(key){
+  const c = srsGet(key);
+  c.box = Math.min(c.box + 1, INTERVALS.length - 1);
+  c.due = Date.now() + INTERVALS[c.box] * DAY;
+  saveState();
+}
+function srsWrong(key){
+  const c = srsGet(key);
+  c.box = 0; c.due = Date.now();
+  saveState();
+}
+function dueCards(){
+  const now = Date.now();
+  return allItems().filter(it => {
+    const c = state.srs[it.key];
+    return c && c.due <= now;
+  });
+}
+function allItems(){
+  const out = [];
+  LESSONS.forEach(l => l.items.forEach(it => {
+    out.push(Object.assign({}, it, { lesson:l.id, lessonTitle:l.title, key:l.id + '::' + it.ar }));
+  }));
+  return out;
+}
+function shuffle(a){
+  const arr = a.slice();
+  for(let i = arr.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+function lessonProgress(l){
+  const total = l.items.length;
+  let done = 0;
+  l.items.forEach(it => { if(state.known[l.id + '::' + it.ar]) done++; });
+  return { done, total, pct: Math.round(done / total * 100) };
+}
+function esc(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function findItem(key){ return allItems().find(x => x.key === key); }
+function toast(msg){
+  const d = document.createElement('div');
+  d.className = 'toast';
+  d.textContent = msg;
+  document.body.appendChild(d);
+  setTimeout(() => d.remove(), 2400);
+}
+
+/* =========================================================
+   4. AUDIO (Google TTS → Web Speech → voix perso)
+   ========================================================= */
+let currentAudio = null;
+let arVoice = null;
+let ttsFailures = 0;
+
+function pickBestArabicVoice(){
+  if(!('speechSynthesis' in window)) return;
+  const voices = speechSynthesis.getVoices();
+  const arabic = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith('ar'));
+  const google = arabic.find(v => /google/i.test(v.name));
+  const ms = arabic.find(v => /microsoft/i.test(v.name) && /majed|hoda|naayf/i.test(v.name));
+  const anyMs = arabic.find(v => /microsoft/i.test(v.name));
+  arVoice = google || ms || anyMs || arabic[0] || null;
+}
+if('speechSynthesis' in window){
+  pickBestArabicVoice();
+  speechSynthesis.onvoiceschanged = pickBestArabicVoice;
+}
+function stopAudio(){
+  if(currentAudio){ try{ currentAudio.pause(); }catch(e){} currentAudio = null; }
+  if('speechSynthesis' in window){ try{ speechSynthesis.cancel(); }catch(e){} }
+}
+function speak(text, key){
+  stopAudio();
+  if(key && state.recordings[key]){
+    playBase64(state.recordings[key]);
+    return;
+  }
+  if(ttsFailures < 3){
+    const url = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=ar&ttsspeed=${state.settings.rate}&total=1&idx=0&textlen=${text.length}&q=${encodeURIComponent(text)}`;
+    try{
+      const audio = new Audio(url);
+      currentAudio = audio;
+      audio.onerror = () => { ttsFailures++; speakBrowserTTS(text); };
+      const p = audio.play();
+      if(p && p.catch) p.catch(() => { ttsFailures++; speakBrowserTTS(text); });
+      return;
+    }catch(e){ ttsFailures++; }
+  }
+  speakBrowserTTS(text);
+}
+function speakBrowserTTS(text){
+  if(!('speechSynthesis' in window)){ toast('Audio non disponible'); return; }
+  try{
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'ar-MA';
+    if(arVoice) u.voice = arVoice;
+    u.rate = state.settings.rate;
+    u.pitch = 1;
+    speechSynthesis.speak(u);
+  }catch(e){ toast('Audio indisponible'); }
+}
+function playBase64(dataUrl){
+  try{
+    const audio = new Audio(dataUrl);
+    currentAudio = audio;
+    audio.play().catch(() => toast('Lecture impossible'));
+  }catch(e){ toast('Enregistrement invalide'); }
+}
+
+/* =========================================================
+   5. RECONNAISSANCE VOCALE
+   ========================================================= */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recognizer = null;
+
+function normalizeAr(text){
+  return String(text)
+    .replace(/[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]/g, '')
+    .replace(/\u0640/g, '')
+    .replace(/[إأآٱا]/g, 'ا')
+    .replace(/ة/g, 'ه')
+    .replace(/ى/g, 'ي')
+    .replace(/ؤ/g, 'و')
+    .replace(/ئ/g, 'ي')
+    .replace(/[^\u0600-\u06FF\s]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+function levenshteinSimilarity(a, b){
+  const m = a.length, n = b.length;
+  if(!m && !n) return 1;
+  if(!m || !n) return 0;
+  const dp = [];
+  for(let i = 0; i <= m; i++) dp.push([i]);
+  for(let j = 1; j <= n; j++) dp[0][j] = j;
+  for(let i = 1; i <= m; i++){
+    for(let j = 1; j <= n; j++){
+      dp[i][j] = Math.min(
+        dp[i-1][j] + 1,
+        dp[i][j-1] + 1,
+        dp[i-1][j-1] + (a[i-1] === b[j-1] ? 0 : 1)
+      );
+    }
+  }
+  return 1 - dp[m][n] / Math.max(m, n);
+}
+function scorePronunciation(target, recognized){
+  const t = normalizeAr(target);
+  const r = normalizeAr(recognized);
+  if(!r) return { score: 0, msg: "Je n'ai rien entendu. Vérifie ton micro et réessaie.", level:'fail' };
+  if(r === t) return { score: 100, msg: "Parfait ! 🎯 Prononciation validée.", level:'pass' };
+  if(r.includes(t) || t.includes(r)) return { score: 92, msg: "Excellent ! Tu y es presque. 🌟", level:'pass' };
+  const pct = Math.round(levenshteinSimilarity(t, r) * 100);
+  if(pct >= 75) return { score: pct, msg: "Très bien ! Continue comme ça. 👏", level:'pass' };
+  if(pct >= 55) return { score: pct, msg: "Presque ! Articule plus nettement. 💪", level:'mid' };
+  if(pct >= 35) return { score: pct, msg: "On s'entraîne. Écoute puis répète. 🎧", level:'mid' };
+  return { score: pct, msg: "Ce n'est pas encore ça. Réécoute et réessaie. 🔁", level:'fail' };
+}
+function startListening(target, onResult){
+  if(!SR){ toast('🎤 Non supporté — utilise Chrome/Edge'); return false; }
+  try{
+    if(recognizer){ try{ recognizer.abort(); }catch(e){} }
+    recognizer = new SR();
+    recognizer.lang = 'ar-MA';
+    recognizer.interimResults = false;
+    recognizer.continuous = false;
+    recognizer.maxAlternatives = 3;
+    let done = false;
+    recognizer.onresult = (e) => {
+      done = true;
+      const alternatives = [];
+      for(let i = 0; i < e.results[0].length; i++) alternatives.push(e.results[0][i].transcript);
+      let best = { score:-1, text: alternatives[0] || '', result: null };
+      alternatives.forEach(alt => {
+        const res = scorePronunciation(target, alt);
+        if(res.score > best.score) best = { score: res.score, text: alt, result: res };
+      });
+      onResult(best.text, best.result);
+    };
+    recognizer.onerror = (e) => {
+      if(done) return;
+      done = true;
+      let msg = "Erreur micro";
+      if(e.error === 'not-allowed') msg = "Autorise le micro dans ton navigateur";
+      else if(e.error === 'no-speech') msg = "Je n'ai rien entendu. Réessaie.";
+      else if(e.error === 'network') msg = "Connexion requise pour la reconnaissance vocale";
+      else if(e.error === 'audio-capture') msg = "Aucun micro détecté";
+      toast('🎤 ' + msg);
+      onResult('', { score:0, msg, level:'fail' });
+    };
+    recognizer.onend = () => { done = true; };
+    recognizer.start();
+    return true;
+  }catch(e){ toast('Erreur reconnaissance vocale'); return false; }
+}
+
+/* =========================================================
+   6. ENREGISTREMENT DE LA VOIX UTILISATEUR
+   ========================================================= */
+let mediaRecorder = null;
+let recordedChunks = [];
+
+async function startRecording(key){
+  if(!navigator.mediaDevices || !window.MediaRecorder){ toast('Enregistrement non supporté'); return; }
+  if(mediaRecorder && mediaRecorder.state === 'recording'){
+    mediaRecorder.stop();
+    return;
+  }
+  try{
+    const stream = await navigator.mediaDevices.getUserMedia({ audio:true });
+    mediaRecorder = new MediaRecorder(stream);
+    recordedChunks = [];
+    mediaRecorder.ondataavailable = e => { if(e.data.size > 0) recordedChunks.push(e.data); };
+    mediaRecorder.onstop = () => {
+      const blob = new Blob(recordedChunks, { type:'audio/webm' });
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        state.recordings[key] = reader.result;
+        try{ saveState(); }catch(e){}
+        toast('✅ Enregistrement sauvegardé');
+        render();
+      };
+      reader.readAsDataURL(blob);
+      stream.getTracks().forEach(t => t.stop());
+    };
+    mediaRecorder.start();
+    toast('🔴 Enregistrement en cours… parle maintenant');
+    setTimeout(() => {
+      if(mediaRecorder && mediaRecorder.state === 'recording') mediaRecorder.stop();
+    }, 4000);
+  }catch(e){ toast('🎤 Micro refusé'); }
+}
+
+/* =========================================================
+   7. NAVIGATION
+   ========================================================= */
+let screen = 'home';
+let currentLesson = null;
+
+function go(s){
+  screen = s;
+  document.querySelectorAll('#tabs button').forEach(b => {
+    b.classList.toggle('active', b.dataset.go === s);
+  });
+  render();
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+document.getElementById('tabs').addEventListener('click', e => {
+  const b = e.target.closest('button');
+  if(b) go(b.dataset.go);
+});
+
+function render(){
+  const main = document.getElementById('main');
+  if(screen === 'home') main.innerHTML = viewHome();
+  else if(screen === 'lessons') main.innerHTML = viewLessons();
+  else if(screen === 'lesson') main.innerHTML = viewLesson(currentLesson);
+  else if(screen === 'review') main.innerHTML = viewReview();
+  else if(screen === 'grammar') main.innerHTML = viewGrammar();
+  else if(screen === 'profile') main.innerHTML = viewProfile();
+  else if(screen === 'quiz') main.innerHTML = viewQuiz();
+  else if(screen === 'pron') main.innerHTML = viewPron();
+  updateTopStats();
+}
+
+/* =========================================================
+   8. VUES
+   ========================================================= */
+function viewHome(){
+  const total = allItems().length;
+  const known = Object.keys(state.known).length;
+  const pctGlobal = Math.round(known / total * 100);
+  const due = dueCards().length;
+  let next = null;
+  for(const l of LESSONS){ if(lessonProgress(l).pct < 100){ next = l; break; } }
+  const phrase = allItems()[Math.floor(Date.now() / DAY) % total];
+
+  return `
+  <div class="hero">
+    <h1>Salam ! 👋</h1>
+    <p>Apprends le darija marocain avec la voix, la reconnaissance vocale et la répétition espacée. Objectif : parler comme un Marocain.</p>
+    <div class="row">
+      ${next ? `<button class="btn" onclick="openLesson('${next.id}')">Continuer : ${esc(next.title)}</button>` : `<button class="btn" onclick="go('lessons')">Voir toutes les leçons</button>`}
+      <button class="btn ghost" onclick="go('pron')">🎤 S'entraîner</button>
+      <button class="btn ghost" onclick="go('review')">Réviser ${due > 0 ? '(' + due + ')' : ''}</button>
+    </div>
+  </div>
+
+  <h2>Ta progression</h2>
+  <div class="grid three">
+    <div class="stat-big"><div class="n">${known}</div><div class="l">Mots appris</div></div>
+    <div class="stat-big"><div class="n">${pctGlobal}%</div><div class="l">Du programme</div></div>
+    <div class="stat-big"><div class="n">${state.streak}</div><div class="l">Jours d'affilée</div></div>
+  </div>
+  <div class="bar" style="margin-top:12px;height:10px"><i style="width:${pctGlobal}%"></i></div>
+
+  <h2>💡 Expression du jour</h2>
+  <div class="card" style="text-align:center">
+    <div style="font-family:'Noto Naskh Arabic',serif;font-size:32px;direction:rtl;line-height:1.6">${esc(phrase.ar)}</div>
+    <div style="color:var(--terra);font-weight:700;margin:4px 0 6px">${esc(phrase.lat)}</div>
+    <div style="font-weight:700;color:var(--blue);margin-bottom:14px">${esc(phrase.fr)}</div>
+    <div class="row" style="justify-content:center">
+      <button class="btn alt" onclick="speak(this.dataset.ar, this.dataset.k)" data-ar="${esc(phrase.ar)}" data-k="${esc(phrase.key)}">🔊 Écouter</button>
+      <button class="btn terra" onclick="pronSingle('${esc(phrase.key)}')">🎤 Prononcer</button>
+    </div>
+  </div>
+
+  <h2>Leçons</h2>
+  <div class="grid">${LESSONS.slice(0,4).map(lessonCardHTML).join('')}</div>
+  <button class="btn alt block" style="margin-top:12px" onclick="go('lessons')">Voir les ${LESSONS.length} leçons</button>
+
+  <div class="footer-note">
+    Darija Master — apprends la langue, pas seulement des mots.<br>
+    🔊 Voix : Google TTS (naturelle) + ta propre voix.<br>
+    🎤 Prononciation : reconnaissance vocale en temps réel.
+  </div>`;
+}
+
+function lessonCardHTML(l){
+  const p = lessonProgress(l);
+  return `
+  <div class="lesson-card" onclick="openLesson('${l.id}')">
+    <div class="ico">${l.icon}</div>
+    <div class="txt">
+      <h3>${esc(l.title)}</h3>
+      <p>${esc(l.desc)}</p>
+      <div class="bar"><i style="width:${p.pct}%"></i></div>
+      <div class="pct">${p.done}/${p.total} mots · ${p.pct}%</div>
+    </div>
+  </div>`;
+}
+
+function viewLessons(){
+  return `
+  <h1>Les leçons</h1>
+  <p class="sub">${LESSONS.length} modules · ${allItems().length} mots et expressions</p>
+  <div class="grid">${LESSONS.map(lessonCardHTML).join('')}</div>`;
+}
+
+function openLesson(id){
+  currentLesson = LESSONS.find(l => l.id === id);
+  screen = 'lesson';
+  render();
+  window.scrollTo({ top:0 });
+}
+
+function viewLesson(l){
+  if(!l) return `<div class="empty">Leçon introuvable.</div>`;
+  const p = lessonProgress(l);
+  return `
+  <button class="back" onclick="go('lessons')">← Toutes les leçons</button>
+  <h1>${l.icon} ${esc(l.title)}</h1>
+  <p class="sub">${esc(l.desc)} · ${p.done}/${p.total} appris (${p.pct}%)</p>
+  <div class="row" style="margin-bottom:18px">
+    <button class="btn" onclick="startFlashcards('${l.id}')">🃏 Flashcards</button>
+    <button class="btn terra" onclick="startLessonQuiz('${l.id}')">🎯 Quiz</button>
+    <button class="btn green" onclick="startPronLesson('${l.id}')">🎤 Prononciation</button>
+    <button class="btn alt" onclick="markAll('${l.id}')">✅ Tout revoir</button>
+  </div>
+  <div class="vocab">
+    ${l.items.map(it => {
+      const key = l.id + '::' + it.ar;
+      const isKnown = !!state.known[key];
+      const hasRec = !!state.recordings[key];
+      return `
+      <div class="vc" style="${isKnown ? 'border-color:var(--green)' : ''}">
+        <div class="ar">${esc(it.ar)}</div>
+        <div class="lat">${esc(it.lat)}</div>
+        <div class="fr">${esc(it.fr)}</div>
+        <div class="vc-actions">
+          <button title="Écouter" onclick="speak(this.dataset.ar, this.dataset.k)" data-ar="${esc(it.ar)}" data-k="${esc(key)}">🔊 Écouter</button>
+          <button title="Prononcer" onclick="pronSingle('${esc(key)}')">🎤 Parler</button>
+          <button title="Enregistrer ma voix" class="${hasRec ? 'has-rec' : 'rec'}" onclick="startRecording('${esc(key)}')">${hasRec ? '✅ Voix' : '⏺ Enreg.'}</button>
+        </div>
+      </div>`;
+    }).join('')}
+  </div>
+  <button class="back" onclick="go('lessons')">← Toutes les leçons</button>`;
+}
+
+function markAll(id){
+  const l = LESSONS.find(x => x.id === id);
+  if(!l) return;
+  l.items.forEach(it => {
+    state.known[l.id + '::' + it.ar] = true;
+    srsRight(l.id + '::' + it.ar);
+  });
+  saveState();
+  render();
+}
+
+/* =========================================================
+   9. PRONONCIATION
+   ========================================================= */
+let pron = null;
+
+function startPronLesson(lessonId){
+  const l = LESSONS.find(x => x.id === lessonId);
+  if(!l) return;
+  pron = { cards: shuffle(l.items).map(it => Object.assign({}, it, { key: lessonId + '::' + it.ar })),
+           idx: 0, title: l.title, mode: 'learn', lastResult: null };
+  screen = 'pron';
+  render();
+  window.scrollTo({ top:0 });
+}
+function startPronAll(){
+  pron = { cards: shuffle(allItems()), idx: 0, title: 'Tous les mots', mode: 'all', lastResult: null };
+  screen = 'pron';
+  render();
+}
+function startPronDue(){
+  const due = dueCards();
+  if(!due.length){ toast('Rien à réviser'); return; }
+  pron = { cards: shuffle(due), idx: 0, title: 'Mots à réviser', mode: 'due', lastResult: null };
+  screen = 'pron';
+  render();
+}
+
+function viewPron(){
+  if(!pron){
+    return `
+    <h1>🎤 Entraîneur de prononciation</h1>
+    <p class="sub">Parle à voix haute : l'app écoute ta prononciation et te donne une note.</p>
+    <div class="card" style="background:var(--terra-l);border-color:var(--terra);margin-bottom:18px">
+      <b style="color:var(--terra)">💡 Comment ça marche ?</b>
+      <p style="margin:6px 0 0;font-size:14px;color:var(--ink)">
+        1. Écoute le mot avec 🔊<br>
+        2. Appuie sur le gros bouton 🎤 et prononce<br>
+        3. L'app compare avec l'original et te note<br>
+        ${SR ? '' : '<br>⚠️ <b>Reconnaissance vocale non disponible sur ce navigateur.</b> Utilise Chrome ou Edge.'}
+      </p>
+    </div>
+    <h2>Choisis ton mode</h2>
+    <div class="grid">
+      <div class="lesson-card" onclick="startPronAll()">
+        <div class="ico">🎯</div>
+        <div class="txt"><h3>Tous les mots</h3><p>S'entraîner sur l'ensemble du programme</p></div>
+      </div>
+      <div class="lesson-card" onclick="startPronDue()">
+        <div class="ico">🧠</div>
+        <div class="txt"><h3>Mots à réviser</h3><p>Les mots programmés aujourd'hui</p></div>
+      </div>
+    </div>
+    <h2>Par leçon</h2>
+    <div class="grid">
+      ${LESSONS.map(l => `
+        <div class="lesson-card" onclick="startPronLesson('${l.id}')">
+          <div class="ico">${l.icon}</div>
+          <div class="txt"><h3>${esc(l.title)}</h3><p>${l.items.length} mots à prononcer</p></div>
+        </div>`).join('')}
+    </div>`;
+  }
+  if(pron.idx >= pron.cards.length){
+    const rate = state.pronTotal ? Math.round(state.pronCorrect / state.pronTotal * 100) : 0;
+    return `
+    <div class="card" style="text-align:center;margin-top:30px">
+      <div style="font-size:56px">🎉</div>
+      <h2 style="margin:8px 0">Session terminée !</h2>
+      <p style="color:var(--muted)">${pron.cards.length} mots prononcés · réussite : ${rate}%</p>
+      <div class="row" style="justify-content:center;margin-top:14px">
+        <button class="btn" onclick="go('pron')">🔁 Nouvelle session</button>
+        <button class="btn alt" onclick="go('home')">Retour</button>
+      </div>
+    </div>`;
+  }
+  const c = pron.cards[pron.idx];
+  const r = pron.lastResult;
+  const scoreClass = !r ? '' : r.score >= 70 ? 'pass' : r.score >= 45 ? 'mid' : 'fail';
+  return `
+  <button class="back" onclick="pron=null;render()">← Changer de mode</button>
+  <h1>🎤 ${esc(pron.title)}</h1>
+  <p class="sub">Mot ${pron.idx + 1} sur ${pron.cards.length}</p>
+  <div class="qprog"><i style="width:${(pron.idx / pron.cards.length) * 100}%"></i></div>
+  <div class="pron-card">
+    <div class="ar">${esc(c.ar)}</div>
+    <div class="lat">${esc(c.lat)}</div>
+    <div class="fr">${esc(c.fr)}</div>
+    <button class="btn alt" style="margin-bottom:8px" onclick="speak(this.dataset.ar, this.dataset.k)" data-ar="${esc(c.ar)}" data-k="${esc(c.key)}">🔊 Écouter la prononciation</button>
+    <button class="mic-btn" id="micBtn" onclick="pronListen()">🎤</button>
+    <div style="font-size:13px;color:var(--muted);margin-top:4px" id="micStatus">Appuie et prononce</div>
+    ${r ? `
+      <div class="score-big ${scoreClass}">${r.score}%</div>
+      <div class="feedback ${r.level}">${r.msg}</div>
+      <div class="heard"><b>J'ai entendu :</b><div class="ar">${esc(r.heard || '—')}</div></div>
+      <div class="row" style="justify-content:center;margin-top:12px">
+        <button class="btn alt" onclick="pronRetry()">🔁 Réessayer</button>
+        <button class="btn ${r.level === 'pass' ? 'green' : 'terra'}" onclick="pronNext()">${r.level === 'pass' ? 'Suivant →' : 'Passer →'}</button>
+      </div>
+    ` : `
+      <div class="row" style="justify-content:center;margin-top:14px">
+        <button class="btn alt" onclick="pronSkip()">⏭ Passer</button>
+      </div>
+    `}
+    <div style="margin-top:16px;font-size:12px;color:var(--muted)">
+      ${state.recordings[c.key] ? '✅ Tu as une voix perso pour ce mot.' : '⏺️ Astuce : enregistre ta voix depuis la leçon pour l’écouter ensuite.'}
+    </div>
+  </div>`;
+}
+
+function pronListen(){
+  if(!pron) return;
+  const c = pron.cards[pron.idx];
+  const btn = document.getElementById('micBtn');
+  const st = document.getElementById('micStatus');
+  if(btn) btn.classList.add('listening');
+  if(st) st.innerHTML = '<span class="rec-indicator"></span> J\'écoute…';
+  const ok = startListening(c.ar, (heard, result) => {
+    if(btn) btn.classList.remove('listening');
+    if(st) st.textContent = 'Appuie et prononce';
+    pron.lastResult = Object.assign({}, result, { heard });
+    state.pronTotal++;
+    if(result.score >= 70){
+      state.pronCorrect++;
+      state.known[c.key] = true;
+      srsRight(c.key);
+      addXP(8);
+    }else{
+      srsWrong(c.key);
+    }
+    saveState();
+    render();
+  });
+  if(!ok){
+    if(btn) btn.classList.remove('listening');
+    if(st) st.textContent = 'Appuie et prononce';
+  }
+}
+function pronRetry(){ if(!pron) return; pron.lastResult = null; render(); }
+function pronNext(){ if(!pron) return; pron.idx++; pron.lastResult = null; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function pronSkip(){ if(!pron) return; pron.idx++; pron.lastResult = null; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+
+function pronSingle(key){
+  const item = findItem(key);
+  if(!item){ toast('Mot introuvable'); return; }
+  pron = { cards:[item], idx:0, title: item.fr, mode:'single', lastResult:null };
+  screen = 'pron';
+  render();
+  window.scrollTo({ top:0 });
+}
+
+/* =========================================================
+   10. RÉVISION
+   ========================================================= */
+function viewReview(){
+  const due = dueCards();
+  const total = allItems().length;
+  const known = Object.keys(state.known).length;
+  const rate = state.quizTotal ? Math.round(state.quizCorrect / state.quizTotal * 100) : 0;
+  let body = '';
+  if(due.length === 0){
+    body = `
+    <div class="card empty">
+      <div class="big">🌙</div>
+      <b>Rien à réviser pour l'instant</b>
+      <p style="margin:8px 0 0;font-size:14px">Commence une leçon et marque des mots comme « appris » : ils reviendront ici au bon moment grâce à la répétition espacée.</p>
+    </div>
+    <button class="btn block" style="margin-top:14px" onclick="go('lessons')">Aller aux leçons</button>`;
+  }else{
+    body = `
+    <div class="card" style="text-align:center">
+      <div style="font-size:40px">🧠</div>
+      <h3 style="font-size:18px;margin:6px 0">${due.length} carte${due.length>1?'s':''} à réviser</h3>
+      <p style="color:var(--muted);font-size:14px;margin:0 0 16px">La répétition espacée fait revenir chaque mot juste avant que tu ne l'oublies.</p>
+      <div class="row" style="justify-content:center">
+        <button class="btn green" onclick="startReview()">🃏 Flashcards</button>
+        <button class="btn terra" onclick="startPronDue()">🎤 Prononcer</button>
+      </div>
+    </div>`;
+  }
+  return `
+  <h1>Réviser</h1>
+  <p class="sub">Répétition espacée · méthode des 5 boîtes</p>
+  <div class="grid three" style="margin-bottom:18px">
+    <div class="stat-big"><div class="n">${known}</div><div class="l">Mots appris</div></div>
+    <div class="stat-big"><div class="n">${total}</div><div class="l">Total</div></div>
+    <div class="stat-big"><div class="n">${rate}%</div><div class="l">Réussite quiz</div></div>
+  </div>
+  ${body}
+  <h2>Révision par thème</h2>
+  <div class="grid">
+    ${LESSONS.map(l => `
+      <div class="lesson-card" onclick="startLessonQuiz('${l.id}')">
+        <div class="ico">${l.icon}</div>
+        <div class="txt">
+          <h3>${esc(l.title)}</h3>
+          <p>Quiz de ${l.items.length} questions</p>
+        </div>
+      </div>`).join('')}
+  </div>`;
+}
+
+/* =========================================================
+   11. GRAMMAIRE
+   ========================================================= */
+function viewGrammar(){
+  return `
+  <h1>Grammaire du darija</h1>
+  <p class="sub">Les règles essentielles, expliquées simplement</p>
+  ${GRAMMAR.map((g, i) => `
+    <details ${i === 0 ? 'open' : ''}>
+      <summary>${g.icon} ${esc(g.title)}</summary>
+      <div class="body">${g.body}</div>
+    </details>`).join('')}
+  <div class="footer-note">Le darija est une langue <b>orale</b> : il n'y a pas de standard unique.
+  Les variantes régionales (Casablanca, Fès, Marrakech, Tanger…) existent. Cette app enseigne le darija urbain le plus largement compris.</div>`;
+}
+
+/* =========================================================
+   12. PROFIL
+   ========================================================= */
+function viewProfile(){
+  const known = Object.keys(state.known).length;
+  const total = allItems().length;
+  const rate = state.quizTotal ? Math.round(state.quizCorrect / state.quizTotal * 100) : 0;
+  const pronRate = state.pronTotal ? Math.round(state.pronCorrect / state.pronTotal * 100) : 0;
+  const lvl = level();
+  const nextLvlXP = lvl * 120;
+  const prevXP = (lvl - 1) * 120;
+  const inLvl = Math.round((state.xp - prevXP) / (nextLvlXP - prevXP) * 100);
+  const recCount = Object.keys(state.recordings).length;
+
+  return `
+  <h1>Mon profil</h1>
+  <p class="sub">Niveau ${lvl} · ${state.xp} XP</p>
+  <div class="card" style="margin-bottom:16px">
+    <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:var(--muted)">
+      <span>Niveau ${lvl}</span><span>${state.xp} / ${nextLvlXP} XP</span>
+    </div>
+    <div class="bar" style="height:12px;margin-top:8px"><i style="width:${Math.max(4,inLvl)}%"></i></div>
+  </div>
+  <div class="grid three">
+    <div class="stat-big"><div class="n">${known}</div><div class="l">Mots appris</div></div>
+    <div class="stat-big"><div class="n">${total - known}</div><div class="l">Restants</div></div>
+    <div class="stat-big"><div class="n">${state.streak}</div><div class="l">Jours de suite</div></div>
+    <div class="stat-big"><div class="n">${rate}%</div><div class="l">Précision quiz</div></div>
+    <div class="stat-big"><div class="n">${pronRate}%</div><div class="l">Prononciation</div></div>
+    <div class="stat-big"><div class="n">${recCount}</div><div class="l">Voix enregistrées</div></div>
+  </div>
+  <h2>Progression par thème</h2>
+  <div class="grid">
+    ${LESSONS.map(l => {
+      const p = lessonProgress(l);
+      return `
+      <div class="card" style="padding:12px 16px">
+        <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:700">
+          <span>${l.icon} ${esc(l.title)}</span><span style="color:var(--muted)">${p.pct}%</span>
+        </div>
+        <div class="bar"><i style="width:${p.pct}%"></i></div>
+      </div>`;
+    }).join('')}
+  </div>
+  <h2>⚙️ Paramètres audio</h2>
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:14px">
+      <span>🎚 Vitesse de la voix</span>
+      <span id="rateVal">${state.settings.rate.toFixed(2)}x</span>
+    </div>
+    <input type="range" class="slider" min="0.6" max="1.2" step="0.05" value="${state.settings.rate}" oninput="setRate(this.value)">
+    <div class="voice-info">
+      Voix détectée : ${arVoice ? esc(arVoice.name) + ' (' + arVoice.lang + ')' : 'aucune voix arabe native — Google TTS utilisé'}
+    </div>
+    <div class="row" style="margin-top:14px">
+      <button class="btn alt sm" onclick="testVoice()">🔊 Tester la voix</button>
+      <button class="btn alt sm" onclick="resetVoice()">🔄 Changer de voix</button>
+    </div>
+  </div>
+  <h2>🛠 Outils</h2>
+  <div class="row">
+    <button class="btn alt" onclick="clearRecordings()">🗑️ Supprimer mes enregistrements (${recCount})</button>
+    <button class="btn red" onclick="resetAll()">⚠️ Réinitialiser toute ma progression</button>
+  </div>
+  <div class="footer-note">
+    Ta progression est sauvegardée automatiquement dans ce navigateur.<br>
+    💡 Pour aller plus vite : parle avec un Marocain, écoute des chansons (Saad Lamjarred, Dizzy DROS…), regarde des séries en darija.
+  </div>`;
+}
+
+function setRate(v){
+  state.settings.rate = parseFloat(v);
+  const el = document.getElementById('rateVal');
+  if(el) el.textContent = state.settings.rate.toFixed(2) + 'x';
+  saveState();
+}
+function testVoice(){ speak('السلام عليكم، كيفاش نتا؟ لاباس؟'); }
+function resetVoice(){ ttsFailures = 0; pickBestArabicVoice(); toast('Voix rechargée'); render(); }
+function clearRecordings(){
+  if(!confirm('Supprimer tous tes enregistrements audio ?')) return;
+  state.recordings = {};
+  saveState();
+  render();
+}
+function resetAll(){
+  if(!confirm('Effacer toute ta progression ? Action définitive.')) return;
+  if(!confirm('Vraiment sûr ? Tu perdras mots, XP et enregistrements.')) return;
+  state = defaultState();
+  saveState();
+  pron = null;
+  render();
+}
+
+/* =========================================================
+   13. FLASHCARDS
+   ========================================================= */
+let fc = null;
+
+function startFlashcards(lessonId){
+  const l = LESSONS.find(x => x.id === lessonId);
+  if(!l) return;
+  fc = {
+    cards: shuffle(l.items).map(it => Object.assign({}, it, { key: lessonId + '::' + it.ar })),
+    idx: 0, revealed: false, mode: 'learn', title: l.title, correct: 0
+  };
+  renderFlash();
+}
+function startReview(){
+  const due = dueCards();
+  if(!due.length) return;
+  fc = { cards: shuffle(due), idx: 0, revealed: false, mode: 'review', title: 'Révision du jour', correct: 0 };
+  renderFlash();
+}
+function renderFlash(){
+  const m = document.getElementById('modal');
+  if(!fc){ m.classList.add('hidden'); m.innerHTML = ''; return; }
+  if(fc.idx >= fc.cards.length){ renderFlashEnd(); return; }
+  const c = fc.cards[fc.idx];
+  m.classList.remove('hidden');
+  m.innerHTML = `
+  <div class="modal-in">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+      <div style="font-size:13px;font-weight:800;color:var(--muted)">${esc(fc.title)}</div>
+      <div style="font-size:13px;font-weight:800;color:var(--blue)">${fc.idx + 1} / ${fc.cards.length}</div>
+    </div>
+    <div class="qprog"><i style="width:${(fc.idx / fc.cards.length) * 100}%"></i></div>
+    <div class="flash">
+      <div class="ar">${esc(c.ar)}</div>
+      <div class="lat">${esc(c.lat)}</div>
+      ${fc.revealed ? `<div class="fr">${esc(c.fr)}</div>` : `<div class="hidden-fr">— que veut dire cette expression ? —</div>`}
+      <div class="row" style="justify-content:center;margin-top:12px">
+        <button class="btn alt sm" onclick="speak(this.dataset.ar, this.dataset.k)" data-ar="${esc(c.ar)}" data-k="${esc(c.key)}">🔊 Écouter</button>
+        <button class="btn terra sm" onclick="closeModal();pronSingle('${esc(c.key)}')">🎤 Prononcer</button>
+      </div>
+    </div>
+    ${fc.revealed ? `
+      <div class="row" style="margin-top:16px">
+        <button class="btn red" style="flex:1" onclick="flashAnswer(false)">😕 À revoir</button>
+        <button class="btn green" style="flex:1" onclick="flashAnswer(true)">😎 Je savais</button>
+      </div>` : `
+      <button class="btn block" style="margin-top:16px" onclick="flashReveal()">Voir la traduction</button>`}
+    <button class="back" style="width:100%;justify-content:center" onclick="closeModal()">Quitter</button>
+  </div>`;
+}
+function flashReveal(){ if(!fc) return; fc.revealed = true; renderFlash(); }
+function flashAnswer(ok){
+  if(!fc) return;
+  const c = fc.cards[fc.idx];
+  if(ok){
+    state.known[c.key] = true;
+    srsRight(c.key);
+    fc.correct++;
+    addXP(5);
+  }else{
+    delete state.known[c.key];
+    srsWrong(c.key);
+  }
+  saveState();
+  fc.idx++;
+  fc.revealed = false;
+  renderFlash();
+}
+function renderFlashEnd(){
+  const m = document.getElementById('modal');
+  m.classList.remove('hidden');
+  m.innerHTML = `
+  <div class="modal-in" style="text-align:center">
+    <div style="font-size:52px">🎉</div>
+    <h2 style="margin:8px 0">Session terminée !</h2>
+    <p style="color:var(--muted);font-size:14px">
+      ${fc.correct} carte${fc.correct > 1 ? 's' : ''} sur ${fc.cards.length} maîtrisée${fc.correct > 1 ? 's' : ''}
+    </p>
+    <div class="stat-big" style="margin:16px 0"><div class="n">+${fc.correct * 5} XP</div><div class="l">Gagnés</div></div>
+    <button class="btn block" onclick="closeModal()">Continuer</button>
+  </div>`;
+}
+function closeModal(){
+  fc = null;
+  const m = document.getElementById('modal');
+  m.classList.add('hidden');
+  m.innerHTML = '';
+  render();
+}
+
+/* =========================================================
+   14. QUIZ
+   ========================================================= */
+let quiz = null;
+
+function startLessonQuiz(lessonId){
+  const l = LESSONS.find(x => x.id === lessonId);
+  if(!l) return;
+  const pool = l.items.map(it => Object.assign({}, it, { key: lessonId + '::' + it.ar }));
+  buildQuiz(pool, l.title);
+}
+function buildQuiz(pool, title){
+  const n = Math.min(10, pool.length);
+  const chosen = shuffle(pool).slice(0, n);
+  const globalPool = allItems();
+  const questions = chosen.map(it => {
+    let type = ['ar2fr', 'fr2ar', 'audio'][Math.floor(Math.random() * 3)];
+    if(!('speechSynthesis' in window) && ttsFailures >= 3) type = Math.random() < .5 ? 'ar2fr' : 'fr2ar';
+    const distract = shuffle(globalPool.filter(x => x.ar !== it.ar)).slice(0, 3);
+    const options = shuffle([it].concat(distract));
+    return { item: it, type, options };
+  });
+  quiz = { questions, idx:0, score:0, title, answered:false, chosen:null };
+  screen = 'quiz';
+  render();
+  window.scrollTo({ top:0 });
+}
+function viewQuiz(){
+  if(!quiz) return `<div class="empty"><div class="big">🎯</div>Lance un quiz depuis une leçon.</div>`;
+  if(quiz.idx >= quiz.questions.length) return viewQuizEnd();
+  const q = quiz.questions[quiz.idx];
+  const item = q.item;
+  let promptHTML = '';
+  if(q.type === 'ar2fr'){
+    promptHTML = `<div class="qtext">Que signifie cette expression ?</div>
+                  <div class="qprompt">${esc(item.ar)}</div>
+                  <div style="text-align:center;color:var(--terra);font-weight:700;margin-bottom:8px">${esc(item.lat)}</div>
+                  <div style="text-align:center"><button class="btn alt" style="padding:8px 14px" onclick="speak(this.dataset.ar, this.dataset.k)" data-ar="${esc(item.ar)}" data-k="${esc(item.key)}">🔊 Écouter</button></div>`;
+  }else if(q.type === 'fr2ar'){
+    promptHTML = `<div class="qtext">Comment dit-on en darija ?</div>
+                  <div class="qprompt fr">${esc(item.fr)}</div>`;
+  }else{
+    promptHTML = `<div class="qtext">Écoute et choisis la bonne traduction</div>
+                  <div class="qprompt"><button class="btn" style="font-size:26px;padding:16px 30px" onclick="speak(this.dataset.ar, this.dataset.k)" data-ar="${esc(item.ar)}" data-k="${esc(item.key)}">🔊 Réécouter</button></div>`;
+    setTimeout(() => speak(item.ar, item.key), 350);
+  }
+  const optsHTML = q.options.map(o => {
+    const isAr = q.type !== 'ar2fr';
+    let cls = 'opt' + (isAr ? ' ar' : '');
+    if(quiz.answered){
+      if(o.ar === item.ar) cls += ' correct';
+      else if(quiz.chosen === o.ar) cls += ' wrong';
+    }
+    const ar = esc(o.ar).replace(/'/g, "\\'");
+    return `<button class="${cls}" ${quiz.answered ? 'disabled' : ''} onclick="answerQuiz('${ar}')">${esc(isAr ? o.ar : o.fr)}</button>`;
+  }).join('');
+  return `
+  <button class="back" onclick="quitQuiz()">← Quitter le quiz</button>
+  <h1>🎯 ${esc(quiz.title)}</h1>
+  <p class="sub">Question ${quiz.idx + 1} sur ${quiz.questions.length} · Score : ${quiz.score}</p>
+  <div class="qprog"><i style="width:${(quiz.idx / quiz.questions.length) * 100}%"></i></div>
+  <div class="qbox">
+    ${promptHTML}
+    <div style="margin-top:18px">${optsHTML}</div>
+    ${quiz.answered ? `
+      <div class="note" style="margin-bottom:12px">
+        ${quiz.chosen === item.ar ? '✅ <b>Bravo !</b>' : '❌ <b>Pas tout à fait.</b>'}
+        — <span class="arab" style="font-size:18px">${esc(item.ar)}</span> = <b>${esc(item.fr)}</b> <i>(${esc(item.lat)})</i>
+      </div>
+      <button class="btn block" onclick="nextQuiz()">Question suivante →</button>` : ''}
+  </div>`;
+}
+function answerQuiz(ar){
+  if(!quiz || quiz.answered) return;
+  const q = quiz.questions[quiz.idx];
+  const correct = ar === q.item.ar;
+  quiz.answered = true;
+  quiz.chosen = ar;
+  state.quizTotal++;
+  if(correct){
+    quiz.score++;
+    state.quizCorrect++;
+    srsRight(q.item.key);
+    state.known[q.item.key] = true;
+    addXP(10);
+  }else{
+    srsWrong(q.item.key);
+    delete state.known[q.item.key];
+  }
+  saveState();
+  render();
+}
+function nextQuiz(){
+  quiz.idx++;
+  quiz.answered = false;
+  quiz.chosen = null;
+  render();
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+function quitQuiz(){ quiz = null; go('lessons'); }
+function viewQuizEnd(){
+  const pct = Math.round(quiz.score / quiz.questions.length * 100);
+  let msg = 'Continue, tu progresses !';
+  let emoji = '📚';
+  if(pct === 100){ msg = 'Parfait ! Tu maîtrises ce thème.'; emoji = '🏆'; }
+  else if(pct >= 80){ msg = 'Excellent travail ! Continue comme ça.'; emoji = '🔥'; }
+  else if(pct >= 50){ msg = 'Bien joué, encore un petit effort.'; emoji = '👏'; }
+  return `
+  <div class="card" style="text-align:center;margin-top:30px">
+    <div style="font-size:60px">${emoji}</div>
+    <h2 style="margin:10px 0 4px">${quiz.score} / ${quiz.questions.length}</h2>
+    <p style="color:var(--muted);margin:0 0 6px">${msg}</p>
+    <div class="stat-big" style="margin:16px 0"><div class="n">+${quiz.score * 10} XP</div><div class="l">Gagnés</div></div>
+    <div class="row" style="justify-content:center">
+      <button class="btn" onclick="replayQuiz()">🔁 Rejouer</button>
+      <button class="btn terra" onclick="startPronFromQuiz()">🎤 Prononcer ces mots</button>
+      <button class="btn alt" onclick="quitQuiz()">Retour</button>
+    </div>
+  </div>`;
+}
+function replayQuiz(){
+  const t = quiz.title;
+  const pool = quiz.questions.map(q => q.item);
+  buildQuiz(pool, t);
+}
+function startPronFromQuiz(){
+  const cards = quiz.questions.map(q => q.item);
+  pron = { cards: shuffle(cards), idx:0, title:'Prononciation — ' + quiz.title, mode:'quiz', lastResult:null };
+  screen = 'pron';
+  render();
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+
+/* =========================================================
+   15. THÈME
+   ========================================================= */
+function toggleTheme(){
+  state.settings.theme = (state.settings.theme === 'dark') ? 'light' : 'dark';
+  applyTheme();
+  saveState();
+}
+function applyTheme(){
+  const isDark = state.settings.theme === 'dark';
+  document.body.classList.toggle('dark', isDark);
+  const btn = document.getElementById('themeBtn');
+  if(btn) btn.textContent = isDark ? '☀️' : '🌙';
+}
+
+/* =========================================================
+   16. RACCOURCIS CLAVIER
+   ========================================================= */
+document.addEventListener('keydown', e => {
+  if(e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if(e.code === 'Space' && screen === 'pron' && pron && pron.idx < pron.cards.length){
+    e.preventDefault();
+    const c = pron.cards[pron.idx];
+    speak(c.ar, c.key);
+  }
+  if(e.code === 'Enter' && screen === 'pron' && pron && pron.idx < pron.cards.length && !pron.lastResult){
+    e.preventDefault();
+    pronListen();
+  }
+  if(e.code === 'Escape' && fc) closeModal();
+});
+
+/* =========================================================
+   17. NETTOYAGE
+   ========================================================= */
+window.addEventListener('beforeunload', () => {
+  stopAudio();
+  if(mediaRecorder && mediaRecorder.state === 'recording'){
+    try{ mediaRecorder.stop(); }catch(e){}
+  }
+});
+
+/* =========================================================
+   18. INITIALISATION
+   ========================================================= */
+applyTheme();
+checkStreak();
+updateTopStats();
+render();
+
+if(!SR){
+  console.warn('[Darija Master] SpeechRecognition non supporté. Utilise Chrome ou Edge.');
+}
+</script>
+</body>
+</html>
